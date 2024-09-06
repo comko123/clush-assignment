@@ -2,3 +2,22 @@
 @tailwind components;
 @tailwind utilities;
 @tailwind variants;
+
+@layer base {
+  * {
+    @apply font-bold;
+  }
+
+  input {
+    @apply outline-none p-2 rounded-lg;
+  }
+}
+
+@layer utilities {
+  .flex-center {
+    @apply flex items-center justify-center;
+  }
+  .hover-orange {
+    @apply hover:text-orange-200 cursor-pointer mx-7;
+  }
+}
