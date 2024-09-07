@@ -1,0 +1,1 @@
+type select = "default" | "complete"

@@ -20,4 +20,10 @@
   .hover-orange {
     @apply hover:text-orange-200 cursor-pointer mx-7;
   }
+  .screen-95pc {
+    @apply w-[95%];
+  }
+  .todo-content-box {
+    @apply flex flex-wrap w-full min-h-[60vh] border-8 border-dashed border-slate-300 rounded-xl;
+  }
 }
