@@ -1,15 +1,15 @@
-import { useState } from "react"
+import { RecoilState, useRecoilValue } from "recoil"
 
-const ContentBox = ({ stash }: { stash: select }) => {
-  const [state] = useState<number[]>(JSON.parse(sessionStorage.getItem(stash) as string))
+const ContentBox = ({ stash, atom }: { stash: select; atom: RecoilState<[] | todo[]> }) => {
+  const state = useRecoilValue(atom)
   return (
     <>
-      {!state ? (
+      {!state.length ? (
         <article className="flex-center w-full h-[58vh] text-4xl ">
           {`"${stash === "default" ? "등록된" : "완료한"} 일정이 없습니다."`}
         </article>
       ) : (
-        state.map((item: number) => <article key={item}>{item}</article>)
+        state.map(item => <article key={item.title}>{item.title}</article>)
       )}
     </>
   )

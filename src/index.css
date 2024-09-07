@@ -11,6 +11,9 @@
   input {
     @apply outline-none p-2 rounded-lg;
   }
+  input[type="radio"] {
+    @apply size-5 cursor-pointer;
+  }
 }
 
 @layer utilities {
@@ -23,7 +26,10 @@
   .screen-95pc {
     @apply w-[95%];
   }
+  .todo-empty-box {
+    @apply min-h-[60vh] border-8 border-dashed border-slate-300 rounded-xl;
+  }
   .todo-content-box {
-    @apply flex flex-wrap w-full min-h-[60vh] border-8 border-dashed border-slate-300 rounded-xl;
+    @apply min-h-[60vh];
   }
 }

@@ -3,6 +3,7 @@ import { useRecoilState } from "recoil"
 import SideBar from "../../components/sideBar"
 import { selectState } from "../../atoms/select"
 import { useNavigate } from "react-router-dom"
+import Footer from "../footer"
 const Layout = ({ children }: { children: React.ReactNode }) => {
   const [state, setState] = useRecoilState(selectState)
   const navigate = useNavigate()
@@ -38,10 +39,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
       </div>
 
       <div className="screen-95pc">{children}</div>
-      <footer className="bg-slate-100 screen-95pc text-center cursor-pointer hover:opacity-60 mt-3">
-        <input type="button" value="Add Todo" />
-        {/* label(svg) tag use */}
-      </footer>
+      <Footer />
     </div>
   )
 }
