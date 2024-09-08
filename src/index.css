@@ -17,8 +17,14 @@
 }
 
 @layer utilities {
+  .todo-box-height {
+    @apply min-h-[30vh] max-h-[60vh] overflow-auto;
+  }
   .flex-center {
     @apply flex items-center justify-center;
+  }
+  .grid-wrapper {
+    @apply grid grid-cols-5 w-full gap-3;
   }
   .hover-orange {
     @apply hover:text-orange-200 cursor-pointer mx-7;
@@ -27,9 +33,9 @@
     @apply w-[95%];
   }
   .todo-empty-box {
-    @apply min-h-[60vh] border-8 border-dashed border-slate-300 rounded-xl;
+    @apply todo-box-height border-8 border-dashed border-slate-300 rounded-xl;
   }
   .todo-content-box {
-    @apply min-h-[60vh];
+    @apply todo-box-height grid-wrapper;
   }
 }

@@ -1,7 +1,8 @@
 import { useState } from "react"
 import { motion } from "framer-motion"
-import { useSetRecoilState } from "recoil"
+import { useRecoilState } from "recoil"
 import { progessTodo } from "../../atoms/todo"
+import { v1 } from "uuid"
 
 const date = new Date()
 
@@ -13,9 +14,10 @@ const Footer = () => {
     important: "",
     startDate: `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()} `,
     endDate: "",
-    state: "progess"
+    state: "progess",
+    id: ""
   })
-  const setProgessTodo = useSetRecoilState(progessTodo)
+  const [progess, setProgess] = useRecoilState(progessTodo)
 
   return (
     <>
@@ -33,8 +35,8 @@ const Footer = () => {
               className="flex flex-col size-[80%] *:my-5 *:text-xl"
               onSubmit={e => {
                 e.preventDefault()
-                sessionStorage.setItem("default", JSON.stringify([state, JSON.stringify(state)]))
-                setProgessTodo(todo => [state, ...todo])
+                setProgess(todo => [state, ...todo])
+                sessionStorage.setItem("default", JSON.stringify([state, ...progess]))
                 setOpen(false)
               }}
             >
@@ -69,7 +71,7 @@ const Footer = () => {
                 />
               </div>
               <div className="size-full flex items-end justify-center">
-                <input type="submit" value="등록하기" className="bg-blue-500 text-white w-max " />
+                <input type="submit" value="등록하기" className="bg-blue-500 text-white w-max" />
               </div>
             </form>
             <svg
@@ -90,7 +92,10 @@ const Footer = () => {
       ) : (
         <footer
           className="bg-slate-100 screen-95pc text-center cursor-pointer hover:opacity-60 mt-3"
-          onClick={() => setOpen(true)}
+          onClick={() => {
+            setOpen(true)
+            setState(state => ({ ...state, id: v1() }))
+          }}
         >
           <input type="button" id="add Todo" value="Add Todo" className="hidden" />
           <label htmlFor="add Todo" className="flex-center w-full h-[7vh]">

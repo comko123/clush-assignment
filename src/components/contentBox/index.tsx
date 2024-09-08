@@ -1,4 +1,6 @@
 import { RecoilState, useRecoilValue } from "recoil"
+import TodoCard from "../todoCard"
+import { v1 } from "uuid"
 
 const ContentBox = ({ stash, atom }: { stash: select; atom: RecoilState<[] | todo[]> }) => {
   const state = useRecoilValue(atom)
@@ -9,7 +11,7 @@ const ContentBox = ({ stash, atom }: { stash: select; atom: RecoilState<[] | tod
           {`"${stash === "default" ? "등록된" : "완료한"} 일정이 없습니다."`}
         </article>
       ) : (
-        state.map(item => <article key={item.title}>{item.title}</article>)
+        state.map(item => <TodoCard {...item} key={v1()} />)
       )}
     </>
   )

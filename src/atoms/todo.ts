@@ -1,6 +1,6 @@
 import { atom } from "recoil"
 import { v1 } from "uuid"
-import { getTodo } from "../../utils/getTodo"
+import { getTodo } from "../utils/getTodo"
 
 export const progessTodo = atom<todo[] | []>({
   key: `progessTodo${v1()}`,

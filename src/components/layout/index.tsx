@@ -1,19 +1,14 @@
 import React from "react"
-import { useRecoilState } from "recoil"
 import SideBar from "../../components/sideBar"
-import { selectState } from "../../atoms/select"
-import { useNavigate } from "react-router-dom"
+import { useLocation, useNavigate } from "react-router-dom"
 import Footer from "../footer"
 const Layout = ({ children }: { children: React.ReactNode }) => {
-  const [state, setState] = useRecoilState(selectState)
   const navigate = useNavigate()
-
+  const location = useLocation()
   const movement = (link: select) => {
-    setState(link)
     if (link === "default") navigate("/")
     else navigate(link)
   }
-
   return (
     <div className="flex-center flex-col w-full h-full my-5 ">
       <header className="w-full  text-center my-6">
@@ -26,19 +21,19 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
             <div className="hover-orange" onClick={() => movement("default")}>
               progress
             </div>
-            {state !== "complete" ? <SideBar /> : null}
+            {location.pathname !== "/complete" ? <SideBar /> : null}
           </div>
 
           <div>
             <div className="hover-orange" onClick={() => movement("complete")}>
               complete
             </div>
-            {state === "complete" ? <SideBar /> : null}
+            {location.pathname === "/complete" ? <SideBar /> : null}
           </div>
         </nav>
       </div>
 
-      <div className="screen-95pc">{children}</div>
+      <div className="screen-95pc h-[70vh]">{children}</div>
       <Footer />
     </div>
   )
