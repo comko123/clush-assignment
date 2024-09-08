@@ -2,5 +2,8 @@ interface todo {
   title: string
   body: string
   important: string
-  date: string
+  startDate: string
+  endDate: string
+  state: "progess" | "complete"
+  id: string
 }
