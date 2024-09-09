@@ -1,6 +1,6 @@
-import { RecoilState, useRecoilValue } from "recoil"
-import TodoCard from "../todoCard"
 import { v1 } from "uuid"
+import TodoCard from "../todoCard"
+import { RecoilState, useRecoilValue } from "recoil"
 
 const ContentBox = ({ stash, atom }: { stash: select; atom: RecoilState<[] | todo[]> }) => {
   const state = useRecoilValue(atom)

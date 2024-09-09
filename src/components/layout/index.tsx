@@ -1,5 +1,5 @@
 import React from "react"
-import SideBar from "../../components/sideBar"
+import SideBar from "./sideBar"
 import { useLocation, useNavigate } from "react-router-dom"
 import Footer from "../footer"
 const Layout = ({ children }: { children: React.ReactNode }) => {

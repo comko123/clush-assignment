@@ -18,7 +18,7 @@
 
 @layer utilities {
   .todo-box-height {
-    @apply min-h-[30vh] max-h-[60vh] overflow-auto;
+    @apply min-h-[67vh] max-h-[67vh] overflow-auto;
   }
   .flex-center {
     @apply flex items-center justify-center;
@@ -33,9 +33,9 @@
     @apply w-[95%];
   }
   .todo-empty-box {
-    @apply todo-box-height border-8 border-dashed border-slate-300 rounded-xl;
+    @apply todo-box-height border-8 border-dashed border-slate-300 rounded-xl mt-5;
   }
   .todo-content-box {
-    @apply todo-box-height grid-wrapper;
+    @apply todo-box-height grid-wrapper mt-5;
   }
 }
