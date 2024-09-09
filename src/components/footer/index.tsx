@@ -3,6 +3,7 @@ import { motion } from "framer-motion"
 import { useRecoilState } from "recoil"
 import { progessTodo } from "../../atoms/todo"
 import { v1 } from "uuid"
+import { useNavigate } from "react-router-dom"
 
 const date = new Date()
 
@@ -18,11 +19,17 @@ const Footer = () => {
     id: ""
   })
   const [progess, setProgess] = useRecoilState(progessTodo)
+  const navigate = useNavigate()
 
   return (
     <>
       {open ? (
-        <motion.section initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
+        <motion.section
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.3 }}
+        >
           <article
             className="absolute bg-black bg-opacity-60 top-0 left-0 w-[100vw] h-[100vh]"
             onClick={() => setOpen(false)}
@@ -38,6 +45,7 @@ const Footer = () => {
                 setProgess(todo => [state, ...todo])
                 sessionStorage.setItem("default", JSON.stringify([state, ...progess]))
                 setOpen(false)
+                navigate("/")
               }}
             >
               <div className="flex-center">

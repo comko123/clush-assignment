@@ -3,7 +3,7 @@ import TodoCard from "../todoCard"
 import { v1 } from "uuid"
 
 const ContentBox = ({ stash, atom }: { stash: select; atom: RecoilState<[] | todo[]> }) => {
-  const state = useRecoilValue(atom)
+  const state = useRecoilValue(atom as RecoilState<[] | todo[]>)
   return (
     <>
       {!state.length ? (

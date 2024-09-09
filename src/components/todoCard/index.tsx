@@ -2,7 +2,8 @@ import { motion } from "framer-motion"
 import { useState } from "react"
 import { useSetRecoilState } from "recoil"
 import { completeTodo, progessTodo } from "../../atoms/todo"
-import { useLocation } from "react-router-dom"
+import { useLocation, useNavigate } from "react-router-dom"
+const date = new Date()
 const TodoCard = (item: todo) => {
   const [view, setView] = useState(false)
   const [modify, setModify] = useState(false)
@@ -10,9 +11,15 @@ const TodoCard = (item: todo) => {
   const [modifyState, setModifyState] = useState<todo>(item)
   const setCompleteState = useSetRecoilState(completeTodo)
   const location = useLocation()
+  const navigate = useNavigate()
   return (
     <section className="flex flex-col">
-      <article className="border-4 border-blue-400 flex flex-col p-2 h-[15vh] rounded-xl">
+      <motion.article
+        initial={{ scaleX: 0, x: 0 }}
+        animate={{ scaleX: 1 }}
+        className="border-4 border-blue-400 flex flex-col p-2 h-[15vh] rounded-xl"
+      >
+        {/* 컴포넌트 분리후에도 애니메이션이 겹치면 빼기 */}
         <div className="flex justify-between">
           <div>{item.title}</div>
           <div className="flex ">
@@ -32,10 +39,18 @@ const TodoCard = (item: todo) => {
                         return arr
                       })
                       setCompleteState(stash => {
-                        const arr = [modifyState, ...stash]
-                        sessionStorage.setItem("complete", JSON.stringify([...stash]))
+                        const copy: todo = {
+                          ...modifyState,
+                          endDate: `${date.getFullYear()}-${
+                            date.getMonth() + 1
+                          }-${date.getDate()} `,
+                          state: "complete"
+                        }
+                        const arr = [copy, ...stash]
+                        sessionStorage.setItem("complete", JSON.stringify([...arr]))
                         return arr
                       })
+                      navigate("/complete")
                     }
                   }}
                 >
@@ -71,11 +86,19 @@ const TodoCard = (item: todo) => {
                 className="size-8 text-red-500"
                 onClick={() => {
                   if (window.confirm("삭제 하시겠습니까?")) {
-                    setState(stash => {
-                      const arr = stash.filter(scale => scale.id !== item.id)
-                      sessionStorage.setItem("default", JSON.stringify(arr))
-                      return arr
-                    })
+                    if (item.state === "progess") {
+                      setState(stash => {
+                        const arr = stash.filter(scale => scale.id !== item.id)
+                        sessionStorage.setItem("default", JSON.stringify(arr))
+                        return arr
+                      })
+                    } else {
+                      setCompleteState(stash => {
+                        const arr = stash.filter(scale => scale.id !== item.id)
+                        sessionStorage.setItem("complete", JSON.stringify(arr))
+                        return arr
+                      })
+                    }
                   }
                 }}
               >
@@ -110,10 +133,15 @@ const TodoCard = (item: todo) => {
         </div>
         <div className="">중요도 : {item.important}</div>
         <div>등록 날짜 : {item.startDate}</div>
-      </article>
+      </motion.article>
 
       {view ? (
-        <article className="">
+        <motion.article
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.3 }}
+        >
           <div
             className="absolute top-0 left-0 w-[100vw] h-[100vh] bg-black opacity-60"
             onClick={() => setView(false)}
@@ -182,7 +210,7 @@ const TodoCard = (item: todo) => {
                 item.body
               )}
             </div>
-            {location.pathname !== "complete" && (
+            {location.pathname !== "/complete" && (
               <div className="w-full flex-center ">
                 <input
                   type="button"
@@ -205,7 +233,7 @@ const TodoCard = (item: todo) => {
               </div>
             )}
           </div>
-        </article>
+        </motion.article>
       ) : null}
     </section>
   )
