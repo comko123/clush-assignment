@@ -16,7 +16,7 @@ const TodoCard = (item: todo) => {
 
   return (
     <section className="flex flex-col">
-      <article className="blue-bod-4 flex-row-cen h-[15vh] rounded-xl px-2">
+      <article className="blue-bod-4 flex-row-cen  rounded-xl px-2">
         <div className="flex justify-between relative top-[15%]">
           <div className="w-[75%] eclips">{item.title}</div>
           <div className="flex">
@@ -34,7 +34,11 @@ const TodoCard = (item: todo) => {
           </div>
         </div>
 
-        <div className={`${item.state === "complete" && "relative bottom-3 left-1"}`}>
+        <div
+          className={`${
+            item.state === "complete" && "relative bottom-3 left-1"
+          } text-xs my-2 md:text-base`}
+        >
           <div>중요도 : {item.important}</div>
           <div>등록 날짜 : {item.startDate}</div>
           {item.state === "complete" && <div>완료 날짜 : {item.endDate}</div>}

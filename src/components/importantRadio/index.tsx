@@ -11,7 +11,7 @@ const ImportantRadio = ({ setFn, value }: setterFn<todo>) => {
             required
             onClick={() => setFn(scale => ({ ...scale, important: stash + "" }))}
           />
-          <div className="mb-[2px] ml-1">{stash}</div>
+          <div className="mb-[2px] ml-1 text-base">{stash}</div>
         </div>
       ))}
     </>

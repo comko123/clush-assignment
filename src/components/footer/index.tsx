@@ -14,7 +14,7 @@ const Footer = () => {
         </Suspense>
       ) : (
         <footer
-          className="sla-100 screen-95pc text-center btn-hov mt-3"
+          className="sla-100 screen-95pc  text-center btn-hov mt-3 py-1 rounded-xl"
           onClick={() => setOpen(true)}
         >
           <input type="button" id="add Todo" value="Add Todo" className="hidden" />

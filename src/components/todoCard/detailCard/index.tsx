@@ -27,10 +27,10 @@ const DetailCard = ({ setView }: open<boolean>) => {
         transition={{ duration: 0.3 }}
       >
         <div
-          className="absolute top-0 left-0 w-[100vw] h-[100vh] bg-black opacity-60"
+          className="abs-tl-0 w-[110vw] h-[60rem] md:full-brow-five bg-black opacity-60 z-10 overflow-hidden"
           onClick={() => setView(false)}
         />
-        <div className="absolute top-[25%] left-[25%] bg-white w-[50vw] h-[50vh] z-10 rounded-xl py-5 px-10">
+        <div className="abs-tl-25 bg-white w-[95vw] md:w-[50vw] h-[32rem] md:h-[30rem] z-20 rounded-xl py-5 px-10">
           <CloseSvg setFn={setView} />
 
           <h2 className="text-center text-3xl my-2 black-bod-4">
@@ -42,23 +42,25 @@ const DetailCard = ({ setView }: open<boolean>) => {
               <div className="eclips w-[90%]">{modifyState.title}</div>
             )}
           </h2>
-          <div className="flex justify-between *:text-2xl black-bod-4">
+          <div className="flex justify-between flex-col md:flex-row *:text-2xl black-bod-4">
             <div>
-              <div>등록 날짜 : {modifyState.startDate}</div>
-              <div>완료 날짜 : {modifyState.endDate ? modifyState.endDate : "진행중"}</div>
+              <div className="text-base">등록 날짜 : {modifyState.startDate}</div>
+              <div className="text-base">
+                완료 날짜 : {modifyState.endDate ? modifyState.endDate : "진행중"}
+              </div>
             </div>
-            <div className="flex modifyStates-end">
-              중요도 : &nbsp;
+            <div className="flex ">
+              <div className="text-base">중요도 : &nbsp;</div>
               {stateModify ? (
                 <Suspense fallback={<ComponentLoading />}>
                   <ImportantRadio setFn={setModifyState} value={modifyState.important} />
                 </Suspense>
               ) : (
-                modifyState.important
+                <div className="text-base">{modifyState.important}</div>
               )}
             </div>
           </div>
-          <div className="text-xl h-45 overflow-auto black-bod-4">
+          <div className="text-xl h-[15rem] overflow-auto black-bod-4">
             {stateModify ? (
               <Suspense fallback={<ComponentLoading />}>
                 <BodyTextarea setFn={setModifyState} value={modifyState.body} />
