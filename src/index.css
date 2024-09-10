@@ -12,7 +12,7 @@
     @apply outline-none p-2 rounded-lg;
   }
   input[type="radio"] {
-    @apply size-5 cursor-pointer;
+    @apply size-3 md:size-5 cursor-pointer;
   }
   textarea {
     @apply outline-none resize-none;
@@ -29,7 +29,7 @@
       @apply bg-slate-100;
     }
     .todo-box-height {
-      @apply min-h-[67vh] max-h-[67vh] overflow-auto;
+      @apply max-h-[67vh] overflow-auto;
     }
     .grid-wrapper {
       @apply grid grid-cols-5 w-full gap-3;
@@ -56,7 +56,7 @@
       @apply todo-box-height border-8 border-dashed border-slate-300 rounded-xl mt-5;
     }
     .todo-content-box {
-      @apply todo-box-height grid-wrapper mt-5;
+      @apply todo-box-height grid grid-cols-2 gap-2 md:grid-wrapper mt-5;
     }
     .imp-page-size {
       @apply w-screen h-screen flex-center text-5xl;
@@ -76,14 +76,17 @@
     .full-brow {
       @apply w-[100vw] h-[100vh];
     }
+    .full-brow-five {
+      @apply w-[100vw] h-[51rem];
+    }
     .abs-tl-0 {
-      @apply absolute right-0 top-0;
+      @apply absolute -right-8 md:right-0 top-0;
     }
     .abs-tl-1 {
       @apply absolute right-[1%] top-[1%];
     }
     .abs-tl-25 {
-      @apply absolute right-[25%] top-[25%];
+      @apply absolute -right-1 md:right-[25%] top-[15rem] md:top-[10rem];
     }
     .black-bod-4 {
       @apply border-b-4 border-black pb-3;

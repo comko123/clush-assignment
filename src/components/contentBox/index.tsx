@@ -9,7 +9,7 @@ const ContentBox = ({ stash, atom }: selectTodo) => {
   return (
     <>
       {!state.length ? (
-        <article className="flex-center w-full h-[58vh] text-4xl ">
+        <article className="flex-center w-full h-[60vh] text-2xl md:text-4xl ">
           {`"${stash === "default" ? "등록된" : "완료한"} 일정이 없습니다."`}
         </article>
       ) : (
