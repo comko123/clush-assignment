@@ -1,20 +1,12 @@
-const BodyTextarea = ({
-  setFn,
-  value
-}: {
-  setFn: (value: React.SetStateAction<todo>) => void
-  value?: string
-}) => {
+const BodyTextarea = ({ setFn, value }: setterFn<todo>) => {
   return (
     <textarea
       defaultValue={value}
       minLength={3}
       required
-      className=" w-full h-full outline-none resize-none bg-slate-100 -mb-2 p-2"
-      onBlur={e => setFn((item: todo) => ({ ...item, body: e.target.value }))}
+      className={`${value ? "rounded-xl -mb-2 size-full" : "w-[85%] h-[150%]"} sla-100 p-2`}
+      onBlur={e => setFn(item => ({ ...item, body: e.target.value }))}
     />
   )
 }
 export default BodyTextarea
-
-// resize-none outline-none bg-slate-100 w-[85%] h-[150%] rounded-xl p-2

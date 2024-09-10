@@ -1,8 +1,8 @@
-import React from "react"
 import SideBar from "./sideBar"
-import { useLocation, useNavigate } from "react-router-dom"
 import Footer from "../footer"
-const Layout = ({ children }: { children: React.ReactNode }) => {
+import { select } from "../../type/select"
+import { useLocation, useNavigate } from "react-router-dom"
+const Layout = ({ children }: { children: children }) => {
   const navigate = useNavigate()
   const location = useLocation()
   const movement = (link: select) => {
@@ -10,7 +10,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
     else navigate(link)
   }
   return (
-    <div className="flex-center flex-col w-full h-full my-5 ">
+    <div className=" flex-coll size-full my-5 ">
       <header className="w-full  text-center my-6">
         <h1 className="text-4xl ">ToDo List</h1>
       </header>

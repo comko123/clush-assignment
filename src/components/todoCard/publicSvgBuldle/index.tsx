@@ -3,15 +3,7 @@ import { completeTodo, progessTodo } from "../../../atoms/todo"
 import { useSetRecoilState } from "recoil"
 import { filter } from "../../../utils/exchange"
 
-const PublicSvgBuldle = ({
-  state,
-  id,
-  setFn
-}: {
-  state: string
-  id: string
-  setFn: React.Dispatch<React.SetStateAction<boolean>>
-}) => {
+const PublicSvgBuldle = ({ state, id, setFn }: svgBundle) => {
   const setState = useSetRecoilState(progessTodo)
   const setCompleteState = useSetRecoilState(completeTodo)
   return (
@@ -21,14 +13,11 @@ const PublicSvgBuldle = ({
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 24 24"
         fill="currentColor"
-        className="size-8 text-red-500"
+        className=" text-red-500"
         onClick={() => {
           if (window.confirm("삭제 하시겠습니까?")) {
-            if (state === "progess") {
-              setState(stash => filter(stash, id, "progess"))
-            } else {
-              setCompleteState(stash => filter(stash, id, "complete"))
-            }
+            if (state === "progess") setState(stash => filter(stash, id, "progess"))
+            else setCompleteState(stash => filter(stash, id, "complete"))
           }
         }}
       >
@@ -44,7 +33,7 @@ const PublicSvgBuldle = ({
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 24 24"
         fill="currentColor"
-        className="size-8 text-amber-500"
+        className=" text-amber-500"
         onClick={() => setFn(true)}
       >
         <path

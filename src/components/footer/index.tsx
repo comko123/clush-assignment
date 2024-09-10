@@ -1,5 +1,7 @@
-import { useState } from "react"
-import AddTodoCard from "./addTodoCard"
+import { useState, lazy, Suspense } from "react"
+import ComponentLoading from "../loading/componentLoading"
+
+const AddTodoCard = lazy(() => import("./addTodoCard"))
 
 const Footer = () => {
   const [open, setOpen] = useState(false)
@@ -7,10 +9,12 @@ const Footer = () => {
   return (
     <>
       {open ? (
-        <AddTodoCard setOpen={setOpen} />
+        <Suspense fallback={<ComponentLoading />}>
+          <AddTodoCard setOpen={setOpen} />
+        </Suspense>
       ) : (
         <footer
-          className="bg-slate-100 screen-95pc text-center cursor-pointer hover:opacity-60 mt-3"
+          className="sla-100 screen-95pc text-center btn-hov mt-3"
           onClick={() => setOpen(true)}
         >
           <input type="button" id="add Todo" value="Add Todo" className="hidden" />
