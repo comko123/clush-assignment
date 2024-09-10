@@ -23,3 +23,4 @@ const ContentBox = ({ stash, atom }: selectTodo) => {
   )
 }
 export default ContentBox
+//todo 항목을 보여주는 box

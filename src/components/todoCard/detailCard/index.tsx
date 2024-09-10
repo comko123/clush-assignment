@@ -6,6 +6,7 @@ import { progessTodo } from "../../../atoms/todo"
 import { modify, modifyStash } from "../../../atoms/content"
 import { lazy, Suspense, useEffect } from "react"
 import ComponentLoading from "../../loading/componentLoading"
+import useReload from "../../../hooks/useReload"
 const TitleInput = lazy(() => import("../../titleInput"))
 const ImportantRadio = lazy(() => import("../../importantRadio"))
 const BodyTextarea = lazy(() => import("../../bodyTextarea"))
@@ -14,6 +15,7 @@ const DetailCard = ({ setView }: open<boolean>) => {
   const setState = useSetRecoilState(progessTodo)
   const [stateModify, setStateModify] = useRecoilState(modify)
   const [modifyState, setModifyState] = useRecoilState(modifyStash)
+  useReload()
   useEffect(() => {
     setStateModify(false)
   }, [setStateModify])
@@ -30,7 +32,7 @@ const DetailCard = ({ setView }: open<boolean>) => {
           className="abs-tl-0 w-[110vw] h-[60rem] md:full-brow-five bg-black opacity-60 z-10 overflow-hidden"
           onClick={() => setView(false)}
         />
-        <div className="abs-tl-25 bg-white w-[95vw] md:w-[50vw] h-[32rem] md:h-[30rem] z-20 rounded-xl py-5 px-10">
+        <div className="abs-tl-252 bg-white w-[95vw] md:w-[50vw] h-[32rem] md:h-[30rem] z-20 rounded-xl py-5 px-10">
           <CloseSvg setFn={setView} />
 
           <h2 className="text-center text-3xl my-2 black-bod-4">
@@ -39,7 +41,7 @@ const DetailCard = ({ setView }: open<boolean>) => {
                 <TitleInput setFn={setModifyState} value={modifyState.title} />
               </Suspense>
             ) : (
-              <div className="eclips w-[90%]">{modifyState.title}</div>
+              <div className=" w-[90%] eclips">{modifyState.title}</div>
             )}
           </h2>
           <div className="flex justify-between flex-col md:flex-row *:text-2xl black-bod-4">
@@ -50,17 +52,17 @@ const DetailCard = ({ setView }: open<boolean>) => {
               </div>
             </div>
             <div className="flex ">
-              <div className="text-base">중요도 : &nbsp;</div>
+              <div className="text-base flex-center">중요도 :&nbsp;</div>
               {stateModify ? (
                 <Suspense fallback={<ComponentLoading />}>
                   <ImportantRadio setFn={setModifyState} value={modifyState.important} />
                 </Suspense>
               ) : (
-                <div className="text-base">{modifyState.important}</div>
+                <div className="text-base flex-center">{modifyState.important}</div>
               )}
             </div>
           </div>
-          <div className="text-xl h-[15rem] overflow-auto black-bod-4">
+          <div className="text-xl h-[15rem]  break-words overflow-auto  black-bod-4">
             {stateModify ? (
               <Suspense fallback={<ComponentLoading />}>
                 <BodyTextarea setFn={setModifyState} value={modifyState.body} />
@@ -94,3 +96,4 @@ const DetailCard = ({ setView }: open<boolean>) => {
   )
 }
 export default DetailCard
+//i아이콘을 눌렀을때 입력한 todo를 팝업으로 자세한 내용을 보여주는 컴포넌트

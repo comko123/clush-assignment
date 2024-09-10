@@ -29,7 +29,7 @@
       @apply bg-slate-100;
     }
     .todo-box-height {
-      @apply max-h-[67vh] overflow-auto;
+      @apply max-h-[64vh] overflow-auto;
     }
     .grid-wrapper {
       @apply grid grid-cols-5 w-full gap-3;
@@ -71,10 +71,10 @@
       @apply text-red-600;
     }
     .half-brow {
-      @apply w-[50%] h-[50%];
+      @apply w-[80%] md:w-[50%] h-[60%];
     }
     .full-brow {
-      @apply w-[100vw] h-[100vh];
+      @apply w-[120vw] h-[61rem];
     }
     .full-brow-five {
       @apply w-[100vw] h-[51rem];
@@ -86,7 +86,10 @@
       @apply absolute right-[1%] top-[1%];
     }
     .abs-tl-25 {
-      @apply absolute -right-1 md:right-[25%] top-[15rem] md:top-[10rem];
+      @apply absolute right-[2rem] md:right-[25%] top-[13rem] md:top-[10rem];
+    }
+    .abs-tl-252 {
+      @apply absolute right-[0.6rem] md:right-[25%] top-[13rem] md:top-[10rem];
     }
     .black-bod-4 {
       @apply border-b-4 border-black pb-3;
@@ -99,6 +102,9 @@
     }
     .eclips {
       @apply overflow-hidden text-ellipsis whitespace-nowrap;
+    }
+    .text-pos {
+      @apply text-base -ml-2 md:ml-0;
     }
   }
 }

@@ -41,3 +41,4 @@ const Footer = () => {
 }
 
 export default Footer
+//하단에 보이는 add todo 버튼 컴포넌트

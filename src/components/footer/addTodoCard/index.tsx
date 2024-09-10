@@ -9,10 +9,12 @@ import BodyTextarea from "../../bodyTextarea"
 import { todoType } from "../../../utils/getTodo"
 import CloseSvg from "../../closeSvg"
 import { inspection } from "../../../utils/exchange"
+import useReload from "../../../hooks/useReload"
 const AddTodoCard = ({ setOpen }: open<boolean>) => {
   const navigate = useNavigate()
   const [progess, setProgess] = useRecoilState(progessTodo)
   const [state, setState] = useState<todo>({ ...todoType })
+  useReload()
   return (
     <motion.section
       initial={{ opacity: 0 }}
@@ -32,7 +34,7 @@ const AddTodoCard = ({ setOpen }: open<boolean>) => {
             e.preventDefault()
             if (inspection(state)) alert("모든 항목을 입력해주세요.")
             else {
-              setProgess(todo => [state, ...todo])
+              setProgess(todo => [{ ...state, id: `${state.title} ${state.id}` }, ...todo])
               sessionStorage.setItem("default", JSON.stringify([state, ...progess]))
               setOpen(false)
               navigate("/")
@@ -40,19 +42,23 @@ const AddTodoCard = ({ setOpen }: open<boolean>) => {
           }}
         >
           <div className="flex-center">
-            <span>제목 :&nbsp;</span>
+            <span className="text-pos">제목 :&nbsp;</span>
             <TitleInput setFn={setState} />
           </div>
           <div className="flex-center">
-            <span>중요도 :</span>
+            <span className="text-pos">중요도 :&nbsp;</span>
             <ImportantRadio setFn={setState} />
           </div>
           <div className="size-full flex justify-center">
-            <span> 내용 :&nbsp;</span>
+            <span className="text-pos"> 내용 :&nbsp;</span>
             <BodyTextarea setFn={setState} />
           </div>
           <div className="size-full flex-ce">
-            <input type="submit" value="등록하기" className="bg-blue-500 text-white w-max" />
+            <input
+              type="submit"
+              value="등록하기"
+              className="bg-blue-500 text-white w-max cursor-pointer"
+            />
           </div>
         </form>
         <CloseSvg setFn={setOpen} />
@@ -61,3 +67,4 @@ const AddTodoCard = ({ setOpen }: open<boolean>) => {
   )
 }
 export default AddTodoCard
+//새로운 todo항목을 작성하는 컴포넌트

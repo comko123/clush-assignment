@@ -19,3 +19,4 @@ const CloseSvg = ({ setFn }: setterFn<boolean>) => {
   )
 }
 export default CloseSvg
+//팝업시 닫기 아이콘
