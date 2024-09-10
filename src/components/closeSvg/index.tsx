@@ -1,13 +1,13 @@
 import { motion } from "framer-motion"
 
-const CloseSvg = ({ setFn }: { setFn: (value: React.SetStateAction<boolean>) => void }) => {
+const CloseSvg = ({ setFn }: setterFn<boolean>) => {
   return (
     <motion.svg
       whileHover={{ scale: 1.3, transition: { duration: 0.2 } }}
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 24 24"
       fill="currentColor"
-      className="size-12 text-red-500 absolute right-[1%] top-[1%]"
+      className="text-red-500 abs-tl-1"
       onClick={() => setFn(false)}
     >
       <path

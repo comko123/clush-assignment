@@ -1,8 +1,10 @@
 import { v1 } from "uuid"
-import TodoCard from "../todoCard"
-import { RecoilState, useRecoilValue } from "recoil"
-
-const ContentBox = ({ stash, atom }: { stash: select; atom: RecoilState<[] | todo[]> }) => {
+import { useRecoilValue } from "recoil"
+import { lazy, Suspense } from "react"
+import ComponentLoading from "../loading/componentLoading"
+import { selectTodo } from "../../type/select"
+const TodoCard = lazy(() => import("../todoCard"))
+const ContentBox = ({ stash, atom }: selectTodo) => {
   const state = useRecoilValue(atom)
   return (
     <>
@@ -11,7 +13,11 @@ const ContentBox = ({ stash, atom }: { stash: select; atom: RecoilState<[] | tod
           {`"${stash === "default" ? "등록된" : "완료한"} 일정이 없습니다."`}
         </article>
       ) : (
-        state.map(item => <TodoCard {...item} key={v1()} />)
+        <Suspense fallback={<ComponentLoading />}>
+          {state.map(item => (
+            <TodoCard {...item} key={v1()} />
+          ))}
+        </Suspense>
       )}
     </>
   )

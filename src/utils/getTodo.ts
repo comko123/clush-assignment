@@ -1,5 +1,6 @@
 import { v1 } from "uuid"
-import { date } from "./date"
+import { localDate } from "./date"
+import { select } from "../type/select"
 
 export const getTodo = (state: select) => {
   const scaleState = sessionStorage.getItem(state)
@@ -11,7 +12,7 @@ export const todoType: todo = {
   title: "",
   body: "",
   important: "",
-  startDate: `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()} `,
+  startDate: localDate,
   endDate: "",
   state: "progess",
   id: v1()

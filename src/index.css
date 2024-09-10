@@ -14,28 +14,88 @@
   input[type="radio"] {
     @apply size-5 cursor-pointer;
   }
-}
+  textarea {
+    @apply outline-none resize-none;
+  }
+  svg {
+    @apply size-8;
+  }
 
-@layer utilities {
-  .todo-box-height {
-    @apply min-h-[67vh] max-h-[67vh] overflow-auto;
-  }
-  .flex-center {
-    @apply flex items-center justify-center;
-  }
-  .grid-wrapper {
-    @apply grid grid-cols-5 w-full gap-3;
-  }
-  .hover-orange {
-    @apply hover:text-orange-200 cursor-pointer mx-7;
-  }
-  .screen-95pc {
-    @apply w-[95%];
-  }
-  .todo-empty-box {
-    @apply todo-box-height border-8 border-dashed border-slate-300 rounded-xl mt-5;
-  }
-  .todo-content-box {
-    @apply todo-box-height grid-wrapper mt-5;
+  @layer utilities {
+    .h-45 {
+      @apply min-h-[45%] max-h-[45%] h-[45%];
+    }
+    .sla-100 {
+      @apply bg-slate-100;
+    }
+    .todo-box-height {
+      @apply min-h-[67vh] max-h-[67vh] overflow-auto;
+    }
+    .grid-wrapper {
+      @apply grid grid-cols-5 w-full gap-3;
+    }
+    .flex-center {
+      @apply flex items-center justify-center;
+    }
+    .flex-coll {
+      @apply flex-col flex-center;
+    }
+    .flex-ce {
+      @apply flex items-end justify-center;
+    }
+    .flex-row-cen {
+      @apply flex flex-col justify-center;
+    }
+    .hover-orange {
+      @apply hover:text-orange-200 cursor-pointer transition-all mx-7;
+    }
+    .screen-95pc {
+      @apply w-[95%];
+    }
+    .todo-empty-box {
+      @apply todo-box-height border-8 border-dashed border-slate-300 rounded-xl mt-5;
+    }
+    .todo-content-box {
+      @apply todo-box-height grid-wrapper mt-5;
+    }
+    .imp-page-size {
+      @apply w-screen h-screen flex-center text-5xl;
+    }
+    .imp-page-pad {
+      @apply flex-col gap-y-5 *:my-5;
+    }
+    .imp-page-btn {
+      @apply bg-blue-500 text-white p-5 hover:opacity-70 cursor-pointer transition-all;
+    }
+    .imp-text {
+      @apply text-red-600;
+    }
+    .half-brow {
+      @apply w-[50%] h-[50%];
+    }
+    .full-brow {
+      @apply w-[100vw] h-[100vh];
+    }
+    .abs-tl-0 {
+      @apply absolute right-0 top-0;
+    }
+    .abs-tl-1 {
+      @apply absolute right-[1%] top-[1%];
+    }
+    .abs-tl-25 {
+      @apply absolute right-[25%] top-[25%];
+    }
+    .black-bod-4 {
+      @apply border-b-4 border-black pb-3;
+    }
+    .blue-bod-4 {
+      @apply border-4 border-blue-400;
+    }
+    .btn-hov {
+      @apply cursor-pointer hover:opacity-60 transition-all;
+    }
+    .eclips {
+      @apply overflow-hidden text-ellipsis whitespace-nowrap;
+    }
   }
 }

@@ -1,14 +1,8 @@
-const TitleInput = ({
-  setFn,
-  value
-}: {
-  setFn: (value: React.SetStateAction<todo>) => void
-  value?: string
-}) => {
+const TitleInput = ({ setFn, value }: setterFn<todo>) => {
   return (
     <input
       type="text"
-      className="w-[85%] bg-slate-100"
+      className="w-[85%] sla-100"
       minLength={3}
       required
       defaultValue={value}

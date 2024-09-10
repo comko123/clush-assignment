@@ -2,18 +2,8 @@ import { useSetRecoilState } from "recoil"
 import { completeTodo, progessTodo } from "../../../atoms/todo"
 import { motion } from "framer-motion"
 import { useNavigate } from "react-router-dom"
-import { date } from "../../../utils/date"
-const ProgessSvgBundle = ({
-  changeState,
-  setFn,
-  setterFn,
-  id
-}: {
-  changeState: todo
-  setFn: React.Dispatch<React.SetStateAction<boolean>>
-  setterFn: React.Dispatch<React.SetStateAction<boolean>>
-  id: string
-}) => {
+import { localDate } from "../../../utils/date"
+const ProgessSvgBundle = ({ changeState, setFn, setterFn, id }: progessSvg) => {
   const setCompleteState = useSetRecoilState(completeTodo)
   const navigate = useNavigate()
   const setState = useSetRecoilState(progessTodo)
@@ -24,7 +14,7 @@ const ProgessSvgBundle = ({
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 24 24"
         fill="currentColor"
-        className="size-8 text-green-500"
+        className=" text-green-500"
         onClick={() => {
           if (window.confirm("선택한 항목을 완료항목으로 이동합니다.")) {
             setState(stash => {
@@ -35,7 +25,7 @@ const ProgessSvgBundle = ({
             setCompleteState(stash => {
               const copy: todo = {
                 ...changeState,
-                endDate: `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()} `,
+                endDate: localDate,
                 state: "complete"
               }
               const arr = [copy, ...stash]
@@ -58,7 +48,7 @@ const ProgessSvgBundle = ({
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 24 24"
         fill="currentColor"
-        className="size-8 text-purple-500"
+        className=" text-purple-500"
         onClick={() => {
           setFn(true)
           setterFn(true)
