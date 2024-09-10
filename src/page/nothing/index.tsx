@@ -10,3 +10,4 @@ const Nothing = () => {
   )
 }
 export default Nothing
+//사용자가 존재하지 않는 url에 접근할때 보여주는 페이지

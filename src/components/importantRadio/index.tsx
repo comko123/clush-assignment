@@ -18,3 +18,4 @@ const ImportantRadio = ({ setFn, value }: setterFn<todo>) => {
   )
 }
 export default ImportantRadio
+//todo를 작성하거나 수정할때 중요도를 체크하는 radio

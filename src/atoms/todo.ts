@@ -7,7 +7,10 @@ export const progessTodo = atom<todo[] | []>({
   default: getTodo("default")
 })
 
+//progess항목을 저장하는 atom
+
 export const completeTodo = atom<todo[] | []>({
   key: `completeTodo${v1()}`,
   default: getTodo("complete")
 })
+//complete항목을 저장하는 atom

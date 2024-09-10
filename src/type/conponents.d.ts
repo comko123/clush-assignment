@@ -2,9 +2,8 @@ type component = React.ComponentType
 
 type children = React.ReactNode
 
-type svgBundle = Pick<todo, "id" | "state"> & Pick<setterFn<boolean>, "setFn">
+type svgBundle = { item: todo } & Pick<setterFn<boolean>, "setFn">
 
-type progessSvg = Omit<svgBundle, "state"> & {
-  setterFn: open<boolean>[string]
+type progessSvg = {
   changeState: todo
 }

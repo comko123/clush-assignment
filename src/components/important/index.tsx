@@ -13,3 +13,4 @@ const importComponent = (Components: component) => {
 }
 
 export default importComponent
+//suspense의 재사용을 극대화하는 컴포넌트

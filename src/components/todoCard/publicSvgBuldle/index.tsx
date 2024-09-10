@@ -2,10 +2,12 @@ import { motion } from "framer-motion"
 import { completeTodo, progessTodo } from "../../../atoms/todo"
 import { useSetRecoilState } from "recoil"
 import { filter } from "../../../utils/exchange"
+import { modifyStash } from "../../../atoms/content"
 
-const PublicSvgBuldle = ({ state, id, setFn }: svgBundle) => {
+const PublicSvgBuldle = ({ item, setFn }: svgBundle) => {
   const setState = useSetRecoilState(progessTodo)
   const setCompleteState = useSetRecoilState(completeTodo)
+  const setModifyState = useSetRecoilState(modifyStash)
   return (
     <div>
       <motion.svg
@@ -16,8 +18,8 @@ const PublicSvgBuldle = ({ state, id, setFn }: svgBundle) => {
         className=" text-red-500"
         onClick={() => {
           if (window.confirm("삭제 하시겠습니까?")) {
-            if (state === "progess") setState(stash => filter(stash, id, "progess"))
-            else setCompleteState(stash => filter(stash, id, "complete"))
+            if (item.state === "progess") setState(stash => filter(stash, item.id, "progess"))
+            else setCompleteState(stash => filter(stash, item.id, "complete"))
           }
         }}
       >
@@ -34,7 +36,10 @@ const PublicSvgBuldle = ({ state, id, setFn }: svgBundle) => {
         viewBox="0 0 24 24"
         fill="currentColor"
         className=" text-amber-500"
-        onClick={() => setFn(true)}
+        onClick={() => {
+          setModifyState(item)
+          setFn(true)
+        }}
       >
         <path
           fillRule="evenodd"
@@ -47,3 +52,4 @@ const PublicSvgBuldle = ({ state, id, setFn }: svgBundle) => {
 }
 
 export default PublicSvgBuldle
+//공용 아이콘 i아이콘(자세히보기) x아이콘(삭제하기)
