@@ -4,7 +4,7 @@ type children = React.ReactNode
 
 type svgBundle = {
   item: todo
-  setState: open<selectTodo>[string]
+  setState: open<modifyTodo>[string]
 }
 
 type progessSvg = {

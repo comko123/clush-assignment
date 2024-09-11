@@ -7,6 +7,7 @@ const AddTodoCard = lazy(() => import("./addTodoCard"))
 const Footer = () => {
   const [state, setState] = useState({
     view: false,
+    modify: false,
     item: { ...todoType }
   })
   return (
