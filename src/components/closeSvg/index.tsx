@@ -1,6 +1,6 @@
 import { motion } from "framer-motion"
 
-const CloseSvg = ({ setFn }: setterFn<boolean>) => {
+const CloseSvg = ({ setFn }: setterFn) => {
   return (
     <motion.svg
       whileHover={{ scale: 1.3, transition: { duration: 0.2 } }}
@@ -8,7 +8,7 @@ const CloseSvg = ({ setFn }: setterFn<boolean>) => {
       viewBox="0 0 24 24"
       fill="currentColor"
       className="text-red-500 abs-tl-1"
-      onClick={() => setFn(false)}
+      onClick={() => setFn(state => ({ ...state, view: false }))}
     >
       <path
         fillRule="evenodd"

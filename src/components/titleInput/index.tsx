@@ -1,4 +1,4 @@
-const TitleInput = ({ setFn, value }: setterFn<todo>) => {
+const TitleInput = ({ setFn, value }: setterFn) => {
   return (
     <input
       type="text"
@@ -6,7 +6,7 @@ const TitleInput = ({ setFn, value }: setterFn<todo>) => {
       minLength={3}
       required
       defaultValue={value}
-      onBlur={e => setFn(scale => ({ ...scale, title: e.target.value }))}
+      onBlur={e => setFn(scale => ({ ...scale, item: { ...scale.item, title: e.target.value } }))}
     />
   )
 }

@@ -1,4 +1,4 @@
-const ImportantRadio = ({ setFn, value }: setterFn<todo>) => {
+const ImportantRadio = ({ setFn, value }: setterFn) => {
   return (
     <>
       {[1, 2, 3, 4, 5].map(stash => (
@@ -9,7 +9,9 @@ const ImportantRadio = ({ setFn, value }: setterFn<todo>) => {
             value={stash}
             defaultChecked={value === stash + ""}
             required
-            onClick={() => setFn(scale => ({ ...scale, important: stash + "" }))}
+            onClick={() =>
+              setFn(scale => ({ ...scale, item: { ...scale.item, important: stash + "" } }))
+            }
           />
           <div className="mb-[2px] ml-1 text-base">{stash}</div>
         </div>

@@ -1,7 +1,7 @@
 type setState<type> = React.SetStateAction<type>
 
-type setterFn<type> = {
-  setFn: (value: setState<type>) => void
+type setterFn = {
+  setFn: open<selectTodo>[string]
   value?: string
 }
 
