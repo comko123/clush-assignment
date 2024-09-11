@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/ban-ts-comment */
 import { useState, lazy, Suspense } from "react"
 import PublicSvgBuldle from "./publicSvgBuldle"
 import ComponentLoading from "../loading/componentLoading"
@@ -19,7 +18,6 @@ const TodoCard = (item: todo) => {
             <Suspense fallback={<ComponentLoading />}>
               {item.state !== "complete" && <ProgessSvgBundle changeState={item} />}
             </Suspense>
-            {/* @ts-expect-error */}
             <PublicSvgBuldle setState={setState} item={item} />
           </div>
         </div>
@@ -37,7 +35,6 @@ const TodoCard = (item: todo) => {
 
       {state.view ? (
         <Suspense fallback={<ComponentLoading />}>
-          {/* @ts-expect-error */}
           <DetailCard state={state} setState={setState} />
         </Suspense>
       ) : null}
@@ -46,4 +43,3 @@ const TodoCard = (item: todo) => {
 }
 export default TodoCard
 //todo항목 등록시 보이는 컴포넌트
-//modify 속성이 존재여부가 확실하지않아 발생한 타입에러를 @ts-expect-error로 무시 ㅜㅜ
