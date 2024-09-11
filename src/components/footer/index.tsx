@@ -1,21 +1,24 @@
 import { useState, lazy, Suspense } from "react"
 import ComponentLoading from "../loading/componentLoading"
+import { todoType } from "../../utils/getTodo"
 
 const AddTodoCard = lazy(() => import("./addTodoCard"))
 
 const Footer = () => {
-  const [open, setOpen] = useState(false)
-
+  const [state, setState] = useState({
+    view: false,
+    item: { ...todoType }
+  })
   return (
     <>
-      {open ? (
+      {state.view ? (
         <Suspense fallback={<ComponentLoading />}>
-          <AddTodoCard setOpen={setOpen} />
+          <AddTodoCard state={state} setState={setState} />
         </Suspense>
       ) : (
         <footer
           className="sla-100 screen-95pc  text-center btn-hov mt-3 py-1 rounded-xl"
-          onClick={() => setOpen(true)}
+          onClick={() => setState(state => ({ ...state, view: true }))}
         >
           <input type="button" id="add Todo" value="Add Todo" className="hidden" />
           <label htmlFor="add Todo" className="flex-center w-full h-[7vh]">

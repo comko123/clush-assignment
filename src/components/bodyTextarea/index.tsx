@@ -1,11 +1,11 @@
-const BodyTextarea = ({ setFn, value }: setterFn<todo>) => {
+const BodyTextarea = ({ setFn, value }: setterFn) => {
   return (
     <textarea
       defaultValue={value}
       minLength={3}
       required
       className={`${value ? "-mb-2 size-full" : "w-[85%] h-[150%]"} sla-100 p-2 rounded-xl`}
-      onBlur={e => setFn(item => ({ ...item, body: e.target.value }))}
+      onBlur={e => setFn(state => ({ ...state, item: { ...state.item, body: e.target.value } }))}
     />
   )
 }

@@ -7,3 +7,12 @@ interface todo {
   state: "progess" | "complete"
   id: string
 }
+
+interface selectTodo {
+  view: boolean
+  item: todo
+}
+
+interface modifyTodo extends selectTodo {
+  modify: boolean
+}

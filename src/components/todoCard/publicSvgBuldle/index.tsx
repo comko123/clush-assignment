@@ -2,12 +2,10 @@ import { motion } from "framer-motion"
 import { completeTodo, progessTodo } from "../../../atoms/todo"
 import { useSetRecoilState } from "recoil"
 import { filter } from "../../../utils/exchange"
-import { modifyStash } from "../../../atoms/content"
 
-const PublicSvgBuldle = ({ item, setFn }: svgBundle) => {
-  const setState = useSetRecoilState(progessTodo)
+const PublicSvgBuldle = ({ item, setState }: svgBundle) => {
+  const setProgessState = useSetRecoilState(progessTodo)
   const setCompleteState = useSetRecoilState(completeTodo)
-  const setModifyState = useSetRecoilState(modifyStash)
   return (
     <div>
       <motion.svg
@@ -18,7 +16,8 @@ const PublicSvgBuldle = ({ item, setFn }: svgBundle) => {
         className=" text-red-500"
         onClick={() => {
           if (window.confirm("삭제 하시겠습니까?")) {
-            if (item.state === "progess") setState(stash => filter(stash, item.id, "progess"))
+            if (item.state === "progess")
+              setProgessState(stash => filter(stash, item.id, "progess"))
             else setCompleteState(stash => filter(stash, item.id, "complete"))
           }
         }}
@@ -37,8 +36,7 @@ const PublicSvgBuldle = ({ item, setFn }: svgBundle) => {
         fill="currentColor"
         className=" text-amber-500"
         onClick={() => {
-          setModifyState(item)
-          setFn(true)
+          setState(state => ({ ...state, view: true }))
         }}
       >
         <path

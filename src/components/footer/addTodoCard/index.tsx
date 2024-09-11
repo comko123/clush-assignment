@@ -2,18 +2,15 @@ import { motion } from "framer-motion"
 import { useRecoilState } from "recoil"
 import { progessTodo } from "../../../atoms/todo"
 import { useNavigate } from "react-router-dom"
-import { useState } from "react"
 import TitleInput from "../../titleInput"
 import ImportantRadio from "../../importantRadio"
 import BodyTextarea from "../../bodyTextarea"
-import { todoType } from "../../../utils/getTodo"
 import CloseSvg from "../../closeSvg"
 import { inspection } from "../../../utils/exchange"
 import useReload from "../../../hooks/useReload"
-const AddTodoCard = ({ setOpen }: open<boolean>) => {
+const AddTodoCard = ({ state, setState }: addTodo) => {
   const navigate = useNavigate()
   const [progess, setProgess] = useRecoilState(progessTodo)
-  const [state, setState] = useState<todo>({ ...todoType })
   useReload()
   return (
     <motion.section
@@ -24,7 +21,7 @@ const AddTodoCard = ({ setOpen }: open<boolean>) => {
     >
       <article
         className="bg-black bg-opacity-60 abs-tl-0 full-brow"
-        onClick={() => setOpen(false)}
+        onClick={() => setState(state => ({ ...state, view: false }))}
       />
       <article className=" flex-coll abs-tl-25 half-brow bg-white z-10 rounded-xl">
         <h2 className="my-3 text-2xl black-bod-4 w-[95%] flex-center pb-2">Add Todo</h2>
@@ -32,11 +29,17 @@ const AddTodoCard = ({ setOpen }: open<boolean>) => {
           className="flex flex-col size-[80%] *:my-5 *:text-xl"
           onSubmit={e => {
             e.preventDefault()
-            if (inspection(state)) alert("모든 항목을 입력해주세요.")
+            if (inspection(state.item)) alert("모든 항목을 입력해주세요.")
             else {
-              setProgess(todo => [{ ...state, id: `${state.title} ${state.id}` }, ...todo])
-              sessionStorage.setItem("default", JSON.stringify([state, ...progess]))
-              setOpen(false)
+              setProgess(todo => [
+                {
+                  ...state.item,
+                  id: `${state.item.title} ${state.item.id} ${(Math.random(), Math.random() * 2)} `
+                },
+                ...todo
+              ])
+              sessionStorage.setItem("default", JSON.stringify([state.item, ...progess]))
+              setState(state => ({ ...state, view: false }))
               navigate("/")
             }
           }}
@@ -61,7 +64,7 @@ const AddTodoCard = ({ setOpen }: open<boolean>) => {
             />
           </div>
         </form>
-        <CloseSvg setFn={setOpen} />
+        <CloseSvg setFn={setState} />
       </article>
     </motion.section>
   )

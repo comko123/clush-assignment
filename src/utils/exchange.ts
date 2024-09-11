@@ -14,6 +14,13 @@ export const change = (stash: todo[], id: string, exchange: todo) => {
 }
 //todo를 수정할때 수정한 todo를 원래있던todo항목(수정전 todo항목)과 교체해주는 change함수
 export const inspection = (state: todo) => {
-  return !state.important || !state.title || !state.body
+  const splaceSpace = (word: string) => word.replaceAll(" ", "")
+  return (
+    !state.important ||
+    !state.title ||
+    !state.body ||
+    !splaceSpace(state.title) ||
+    !splaceSpace(state.body)
+  )
 }
 // todo를 수정하거나 작성할때 모든 항목을 작성하거나 체코했는지 검사하는 inspection함수
